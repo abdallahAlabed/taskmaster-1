@@ -23,7 +23,7 @@ public class AddTask extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        db =  Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task").allowMainThreadQueries().build();
+        db =  Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "tasks").allowMainThreadQueries().build();
         taskDoa = (TaskDoa) db.taskDao();
 
         EditText title = findViewById(R.id.titletxt);

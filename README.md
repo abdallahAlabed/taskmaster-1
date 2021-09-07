@@ -17,3 +17,7 @@
 - ### tap on a task, and assert that the resulting activity displays the name of that task
 - ### edit the user’s username, and assert that it says the correct thing on the homepage
 
+## Amplify and DynamoDB
+- ### Add Task Form Modify your Add Task form to save the data entered in as a Task to DynamoDB.
+- ### Homepage Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB.
+

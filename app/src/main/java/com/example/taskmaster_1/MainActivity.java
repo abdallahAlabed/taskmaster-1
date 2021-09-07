@@ -10,10 +10,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.core.Amplify;
 import com.example.taskmaster_1.database.AppDatabase;
 import com.example.taskmaster_1.database.TaskDoa;
 import com.example.taskmaster_1.database.TaskModel;
@@ -29,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        try {
+            Amplify.configure(getApplicationContext());
+            Log.i("taskmaster1", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("taskmaster1", "Could not initialize Amplify", error);
+        }
         db =  Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "tasks").allowMainThreadQueries().build();
         taskDoa = (TaskDoa) db.taskDao();
 

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.core.Amplify;
 import com.example.taskmaster_1.database.AppDatabase;
 import com.example.taskmaster_1.database.TaskDoa;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         try {
+            Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
             Log.i("taskmaster1", "Initialized Amplify");
         } catch (AmplifyException error) {

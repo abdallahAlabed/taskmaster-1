@@ -9,21 +9,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.Todo;
 import com.example.taskmaster_1.database.TaskModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdaptaer extends RecyclerView.Adapter<TaskAdaptaer.TaskViewHolder> {
-    List<TaskModel> allTask = new ArrayList<TaskModel>();
+    List<Todo> allTask = new ArrayList<Todo>();
 
-    public TaskAdaptaer(List<TaskModel> allTask) {
+    public TaskAdaptaer(List<Todo> allTask) {
 
         this.allTask = allTask;
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
-        public TaskModel taskModel;
+        public Todo taskModel;
         View itemView;
 
         public TaskViewHolder(@NonNull View itemView) {
@@ -59,7 +60,7 @@ public class TaskAdaptaer extends RecyclerView.Adapter<TaskAdaptaer.TaskViewHold
         TextView state = holder.itemView.findViewById(R.id.stateInFragment);
         TextView body = holder.itemView.findViewById(R.id.bodyInFragment);
 
-        title.setText(holder.taskModel.title);
+        title.setText(holder.taskModel.getTitle());
         state.setText(holder.taskModel.getState());
         body.setText(holder.taskModel.getBody());
 

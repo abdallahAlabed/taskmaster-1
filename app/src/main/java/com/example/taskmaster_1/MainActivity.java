@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView taskModelRecuclerView = findViewById(R.id.taskRecylerView);
         taskModelRecuclerView.setLayoutManager(new LinearLayoutManager(this));
         taskModelRecuclerView.setAdapter(new TaskAdaptaer(todos));
+
         Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 ModelQuery.list(Todo.class),
                 response -> {
                     for (Todo todo : response.getData()) {
-//                        Log.i("taskmaster1", todo.getId());
+                        Log.i("taskmaster1", todo.getId());
                         todos.add(todo);
                         System.out.println(todo);
                     }

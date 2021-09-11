@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class AllTasks extends AppCompatActivity {
+public class    AllTasks extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +18,6 @@ public class AllTasks extends AppCompatActivity {
 
 
     }
+
 
 }

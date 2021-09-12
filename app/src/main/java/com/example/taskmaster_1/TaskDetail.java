@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -36,6 +38,9 @@ public class TaskDetail extends AppCompatActivity {
         setContentView(R.layout.activity_task_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(TaskDetail.this);
+        String teamName = sharedPreferences.getString("teamName", "teamThr");
+
 //        db =  Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "tasks").allowMainThreadQueries().build();
 //        taskDoa = (TaskDoa) db.taskDao();
 
@@ -57,7 +62,9 @@ public class TaskDetail extends AppCompatActivity {
                 response -> {
                     for (Todo todo : response.getData()) {
                         Log.i("taskmaster1", todo.getId());
+                       if (teamName.equals(todo.getTeam().getName()) ){
                         todos.add(todo);
+                       }
                     }
                     handler.sendEmptyMessage(1);
                 },

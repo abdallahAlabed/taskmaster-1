@@ -21,8 +21,10 @@ import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.datastore.generated.model.Todo;
 import com.example.taskmaster_1.database.AppDatabase;
 import com.example.taskmaster_1.database.TaskDoa;
@@ -53,6 +55,25 @@ public class MainActivity extends AppCompatActivity {
             Log.e("taskmaster1", "Could not initialize Amplify", error);
         }
 
+//        Team team = Team.builder().name("teamOne").build();
+//        Team team1 = Team.builder().name("teamTwo").build();
+//        Team team2 = Team.builder().name("teamThr").build();
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(team),
+//                response -> Log.i("taskmaster1", "Added Todo with id: " + response.getData().getId()),
+//                error -> Log.e("taskmaster1", "Create failed", error)
+//        );
+//        Amplify.API.mutate(
+//                ModelMutation.create(team1),
+//                response -> Log.i("taskmaster1", "Added Todo with id: " + response.getData().getId()),
+//                error -> Log.e("taskmaster1", "Create failed", error)
+//        );
+//        Amplify.API.mutate(
+//                ModelMutation.create(team2),
+//                response -> Log.i("taskmaster1", "Added Todo with id: " + response.getData().getId()),
+//                error -> Log.e("taskmaster1", "Create failed", error)
+//        );
 //        db =  Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "tasks").allowMainThreadQueries().build();
 //        taskDoa = (TaskDoa) db.taskDao();
 //        taskModels = (ArrayList<TaskModel>) taskDoa.getAll();

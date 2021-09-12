@@ -17,6 +17,10 @@
 - ### tap on a task, and assert that the resulting activity displays the name of that task
 - ### edit the user’s username, and assert that it says the correct thing on the homepage
 
+## Amplify and DynamoDB
+- ### Add Task Form Modify your Add Task form to save the data entered in as a Task to DynamoDB.
+- ### Homepage Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB.
+
 ## Tasks Are Owned By Teams
 - ### Create a second entity for a team, which has a name and a list of tasks. Update your tasks to be owned by a team.
 
@@ -31,3 +35,4 @@
 ![pc2](Screenshot_20210912_160905_com.example.taskmaster_1.jpg)
 ![pc3](Screenshot_20210912_160915_com.example.taskmaster_1.jpg)
 ![pc4](Screenshot_20210912_162031_com.example.taskmaster_1.jpg)
+

@@ -61,13 +61,16 @@ dependencies {
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:2.4.0-alpha04"
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.2'){
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.2') {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude module: 'recyclerview-v7'
         exclude module: 'appcompat-v7'
     }
     // Amplify core dependency
     implementation 'com.amplifyframework:core:1.24.0'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.24.0'
+
+    implementation 'com.amplifyframework:aws-storage-s3:1.24.0'
     implementation 'com.amplifyframework:aws-auth-cognito:1.24.0'
 
     // Support for Java 8 features

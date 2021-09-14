@@ -32,13 +32,16 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
         Amplify.Auth.signIn(
-                "abdallahAlabed1",
-                "Abdllah321",
-                result -> Log.i("AuthQuickstart", result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete"),
+                userName.getText().toString(),
+                password.getText().toString(),
+                result -> {
+                    Log.i("AuthQuickstart", result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete"); Intent getStarted = new Intent(Login.this, MainActivity.class);
+                    startActivity(getStarted);
+                },
                 error -> Log.e("AuthQuickstart", error.toString())
         );
 
-                Toast.makeText(getApplicationContext(), "hallelooya!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), password.getText().toString(), Toast.LENGTH_LONG).show();
             }
         });
 

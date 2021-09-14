@@ -39,7 +39,7 @@ public class MainActivityTest {
         onView(withId(R.id.save)).perform(click());
         onView(withId(R.id.userName)).check(matches(withText(titleText+username+ " tasks")));
     }
-
+    
     @Test
     public void testGoToDetails() {
         onView(withId(R.id.taskRecylerView)).perform(actionOnItemAtPosition(0 ,click()));

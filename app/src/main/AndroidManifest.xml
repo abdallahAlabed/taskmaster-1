@@ -11,8 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskMaster1"
         tools:ignore="ExtraText">
-        android:name=".taskmaster1  "
-        ...
+        <activity
+            android:name=".ConfirmSignUp"
+            android:exported="true" />
+        <activity
+            android:name=".Login"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
             android:name=".Onedish"
             android:exported="true" />
@@ -29,7 +36,7 @@
             android:name=".AddTask"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SinUp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,9 +44,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Add the android:name attribute to the application node -->
-
     </application>
 
 </manifest>

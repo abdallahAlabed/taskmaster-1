@@ -49,19 +49,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Amplify.Auth.fetchAuthSession(
+//                result -> Log.i("AmplifyQuickstart", result.toString()),
+//                error -> Log.e("AmplifyQuickstart", error.toString())
+//        );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.configure(getApplicationContext());
-            // Add this line, to include the Auth plugin.
-
-            Log.i("taskmaster1", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("taskmaster1", "Could not initialize Amplify", error);
-        }
+//        try {
+//            Amplify.addPlugin(new AWSApiPlugin());
+//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+//            Amplify.configure(getApplicationContext());
+//            // Add this line, to include the Auth plugin.
+//
+//            Log.i("taskmaster1", "Initialized Amplify");
+//        } catch (AmplifyException error) {
+//            Log.e("taskmaster1", "Could not initialize Amplify", error);
+//        }
 //        AuthSignUpOptions options = AuthSignUpOptions.builder()
 //                .userAttribute(AuthUserAttributeKey.email(), "a1650902031@gmail.com")
 //                .build();
@@ -86,10 +90,7 @@ public class MainActivity extends AppCompatActivity {
 //                () -> Log.i("AuthQuickstart", "Signed out successfully"),
 //                error -> Log.e("AuthQuickstart", error.toString())
 //        );
-//        Amplify.Auth.fetchAuthSession(
-//                result -> Log.i("AmplifyQuickstart", result.toString()),
-//                error -> Log.e("AmplifyQuickstart", error.toString())
-//        );
+
 //        Team team = Team.builder().name("teamOne").build();
 //        Team team1 = Team.builder().name("teamTwo").build();
 //        Team team2 = Team.builder().name("teamThr").build();
@@ -118,7 +119,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Amplify.Auth.signOut(
-                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        () -> {
+                            Log.i("AuthQuickstart", "Signed out successfully");Intent sinOut = new Intent(MainActivity.this, Login.class);startActivity(sinOut);
+                        },
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
                 Intent signOut = new Intent(MainActivity.this, Login.class);

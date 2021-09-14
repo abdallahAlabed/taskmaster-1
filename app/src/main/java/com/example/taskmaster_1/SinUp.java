@@ -16,6 +16,7 @@ import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class SinUp extends AppCompatActivity {
 
@@ -26,6 +27,7 @@ public class SinUp extends AppCompatActivity {
         try {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.configure(getApplicationContext());
             // Add this line, to include the Auth plugin.
 
@@ -45,10 +47,12 @@ public class SinUp extends AppCompatActivity {
                         .userAttribute(AuthUserAttributeKey.email(), email.toString())
                         .build();
                 Amplify.Auth.signUp(userName.toString(), password.toString(), options,
-                        result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
+                        result -> {
+                            Log.i("AuthQuickStart", "Result: " + result.toString()); Intent verification = new Intent(SinUp.this, ConfirmSignUp.class);
+                            startActivity(verification);
+                        },
                         error -> Log.e("AuthQuickStart", "Sign up failed", error)
                 );
-
 
                 Toast.makeText(getApplicationContext(), "signUp Confirmed !", Toast.LENGTH_LONG).show();
             }
@@ -62,14 +66,7 @@ public class SinUp extends AppCompatActivity {
                 startActivity(logIn);
             }
         });
-        Button goTogoToVerificationBtn = findViewById(R.id.verificationBtn);
-        goTogoToVerificationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent verification = new Intent(SinUp.this, ConfirmSignUp.class);
-                startActivity(verification);
-            }
-        });
+
 
     }
 }

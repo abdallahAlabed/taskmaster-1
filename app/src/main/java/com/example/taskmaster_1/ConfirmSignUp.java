@@ -30,7 +30,10 @@ public class ConfirmSignUp extends AppCompatActivity {
                 Amplify.Auth.confirmSignUp(
                         userName.toString(),
                         confirmSignUpCode.toString(),
-                        result -> Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete"),
+                        result -> {
+                            Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete"); Intent verification = new Intent(ConfirmSignUp.this, Login.class);
+                            startActivity(verification);
+                        },
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
 
@@ -39,14 +42,7 @@ public class ConfirmSignUp extends AppCompatActivity {
             }
         });
 
-        Button goTogoToVerificationBtn = findViewById(R.id.loginVerification);
-        goTogoToVerificationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent verification = new Intent(ConfirmSignUp.this, Login.class);
-                startActivity(verification);
-            }
-        });
+
 
 
 //        182970

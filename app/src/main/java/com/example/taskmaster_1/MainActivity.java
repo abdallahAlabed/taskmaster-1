@@ -17,12 +17,17 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.datastore.generated.model.Todo;
@@ -49,12 +54,42 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
+            // Add this line, to include the Auth plugin.
+
             Log.i("taskmaster1", "Initialized Amplify");
         } catch (AmplifyException error) {
             Log.e("taskmaster1", "Could not initialize Amplify", error);
         }
+//        AuthSignUpOptions options = AuthSignUpOptions.builder()
+//                .userAttribute(AuthUserAttributeKey.email(), "a1650902031@gmail.com")
+//                .build();
+//        Amplify.Auth.signUp("abdallahAlabed1", "Abdllah321", options,
+//                result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
+//                error -> Log.e("AuthQuickStart", "Sign up failed", error)
+//        );
+//        Amplify.Auth.confirmSignUp(
+//                "abdallahAlabed1",
+//                "182970",
+//                result -> Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete"),
+//                error -> Log.e("AuthQuickstart", error.toString())
+//        );
+//        Amplify.Auth.signIn(
+//                "abdallahAlabed1",
+//                "Abdllah321",
+//                result -> Log.i("AuthQuickstart", result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete"),
+//                error -> Log.e("AuthQuickstart", error.toString())
+//        );
 
+//        Amplify.Auth.signOut(
+//                () -> Log.i("AuthQuickstart", "Signed out successfully"),
+//                error -> Log.e("AuthQuickstart", error.toString())
+//        );
+//        Amplify.Auth.fetchAuthSession(
+//                result -> Log.i("AmplifyQuickstart", result.toString()),
+//                error -> Log.e("AmplifyQuickstart", error.toString())
+//        );
 //        Team team = Team.builder().name("teamOne").build();
 //        Team team1 = Team.builder().name("teamTwo").build();
 //        Team team2 = Team.builder().name("teamThr").build();
@@ -77,7 +112,20 @@ public class MainActivity extends AppCompatActivity {
 //        db =  Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "tasks").allowMainThreadQueries().build();
 //        taskDoa = (TaskDoa) db.taskDao();
 //        taskModels = (ArrayList<TaskModel>) taskDoa.getAll();
+        Button signOutBtn = findViewById(R.id.signOut);
 
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
+                Intent signOut = new Intent(MainActivity.this, Login.class);
+                startActivity(signOut);
+                Toast.makeText(getApplicationContext(), "Signed out successfully !", Toast.LENGTH_LONG).show();
+            }
+        });
         RecyclerView taskModelRecuclerView = findViewById(R.id.taskRecylerView);
         taskModelRecuclerView.setLayoutManager(new LinearLayoutManager(this));
         taskModelRecuclerView.setAdapter(new TaskAdaptaer(todos));

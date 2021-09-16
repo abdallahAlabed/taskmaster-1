@@ -35,6 +35,7 @@ public class TaskAdaptaer extends RecyclerView.Adapter<TaskAdaptaer.TaskViewHold
             intent.putExtra("title",taskModel.getTitle());
             intent.putExtra("state",taskModel.getState());
             intent.putExtra("body",taskModel.getBody());
+            intent.putExtra("img",taskModel.getImg());
             itemView.getContext().startActivity(intent);
             });
         }

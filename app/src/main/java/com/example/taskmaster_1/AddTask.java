@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.net.UrlQuerySanitizer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +39,7 @@ public class AddTask extends AppCompatActivity {
     Todo todo;
     String fileName ="";
     List<Team> teams = new ArrayList<Team>();
+    Uri getData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,17 +82,33 @@ public class AddTask extends AppCompatActivity {
 
                 }
 
-                todo = Todo.builder().title(title.getText().toString()).state(state.getText().toString()).body(body.getText().toString()).team(team).build();
+
+                try {
+                    if(getData!=null){
+                    InputStream exampleInputStream = getContentResolver().openInputStream(getData);
+                    Amplify.Storage.uploadInputStream(
+                            fileName,
+                            exampleInputStream,
+                            result -> {
+                                Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey());Toast.makeText(getApplicationContext(), "hallelooya!", Toast.LENGTH_LONG).show();
+                            },
+                            storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
+                    );}
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                todo = Todo.builder().title(title.getText().toString()).state(state.getText().toString()).body(body.getText().toString()).team(team).img(fileName).build();
                 Amplify.API.mutate(
                         ModelMutation.create(todo),
                         response -> Log.i("taskmaster1", "Added Todo with id: " + response.getData().getId()),
                         error -> Log.e("taskmaster1", "Create failed", error)
                 );
+
 //
 
 //                Intent goToAllTask = new Intent(AddTask.this, TaskDetail.class);
 //                startActivity(goToAllTask);
-                Toast.makeText(getApplicationContext(), "hallelooya!", Toast.LENGTH_LONG).show();
+
             }
         });
         Button logInBtn = findViewById(R.id.addPic);
@@ -97,6 +116,7 @@ public class AddTask extends AppCompatActivity {
         logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 pickFile();
             }
         });
@@ -107,18 +127,8 @@ public class AddTask extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         File file = new File(data.getData().getPath());
         fileName=file.getName();
+        getData = data.getData();
 
-        try {
-            InputStream exampleInputStream = getContentResolver().openInputStream(data.getData());
-            Amplify.Storage.uploadInputStream(
-                    fileName,
-                    exampleInputStream,
-                    result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
-                    storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
-            );
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
         super.onActivityResult(requestCode, resultCode, data);
     }

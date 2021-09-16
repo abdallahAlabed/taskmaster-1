@@ -1,0 +1,169 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateTodo {
+  onCreateTodo {
+    id
+    title
+    state
+    img
+    body
+    teamID
+    team {
+      id
+      name
+      teamTasks {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTodo {
+  onUpdateTodo {
+    id
+    title
+    state
+    img
+    body
+    teamID
+    team {
+      id
+      name
+      teamTasks {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTodo {
+  onDeleteTodo {
+    id
+    title
+    state
+    img
+    body
+    teamID
+    team {
+      id
+      name
+      teamTasks {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTeam {
+  onCreateTeam {
+    id
+    name
+    teamTasks {
+      items {
+        id
+        title
+        state
+        img
+        body
+        teamID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTeam {
+  onUpdateTeam {
+    id
+    name
+    teamTasks {
+      items {
+        id
+        title
+        state
+        img
+        body
+        teamID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTeam {
+  onDeleteTeam {
+    id
+    name
+    teamTasks {
+      items {
+        id
+        title
+        state
+        img
+        body
+        teamID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
